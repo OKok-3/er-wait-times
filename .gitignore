@@ -1,0 +1,11 @@
+# Python
+**/.venv
+**/.ruff_cache
+**/.pytest_cache
+
+# Environment
+**/.env
+**/.vscode
+
+# Mac
+**/.DS_Store
