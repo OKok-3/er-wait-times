@@ -1,6 +1,7 @@
 hospitals:
   - name: LHSC Victoria Hospital Adult ER
     location: London, ON
+    time_zone: America/Toronto
     address: 800 Commissioners Rd W, London, ON N6A 5W9
     id: lhsc_vh_adult_er
     dept: ER
@@ -10,6 +11,7 @@ hospitals:
 
   - name: LHSC University Hospital Adult ER
     location: London, ON
+    time_zone: America/Toronto
     address: 339 Southdale Rd E, London, ON N6E 1A4
     id: lhsc_uh_adult_er
     dept: ER
