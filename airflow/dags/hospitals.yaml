@@ -1,0 +1,18 @@
+hospitals:
+  - name: LHSC Victoria Hospital Adult ER
+    location: London, ON
+    address: 800 Commissioners Rd W, London, ON N6A 5W9
+    id: lhsc_vh_adult_er
+    dept: ER
+    scraper: lhsc
+    url: https://www.lhsc.on.ca/adult-ed/emergency-department-wait-times
+    version: 1
+
+  - name: LHSC University Hospital Adult ER
+    location: London, ON
+    address: 339 Southdale Rd E, London, ON N6E 1A4
+    id: lhsc_uh_adult_er
+    dept: ER
+    scraper: lhsc
+    url: https://www.lhsc.on.ca/adult-ed/emergency-department-wait-times
+    version: 1
