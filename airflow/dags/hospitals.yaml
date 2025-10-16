@@ -18,3 +18,13 @@ hospitals:
     scraper: lhsc
     url: https://www.lhsc.on.ca/adult-ed/emergency-department-wait-times
     version: 1
+
+  - name: LHSC Children's Hospital ER
+    location: London, ON
+    address: 800 Commissioners Rd E
+    time_zone: America/Toronto
+    id: lhsc_ch_er
+    dept: ER
+    scraper: lhsc
+    url: https://www.lhsc.on.ca/emergency-department/childrens-hospital-emergency-department-wait-times
+    version: 1
