@@ -2,7 +2,7 @@ hospitals:
   - id: lhsc_vh_adult_er
     name: LHSC Victoria Hospital Adult ER
     dept: ER
-    scraper: lhsc
+    scraper_class: scrapers.lhsc.LHSC
     url: https://www.lhsc.on.ca/adult-ed/emergency-department-wait-times
     address: 800 Commissioners Rd W
     city: London
@@ -13,7 +13,7 @@ hospitals:
   - id: lhsc_ch_er
     name: LHSC Children's Hospital ER
     dept: ER
-    scraper: lhsc
+    scraper_class: scrapers.lhsc.LHSC
     url: https://www.lhsc.on.ca/emergency-department/childrens-hospital-emergency-department-wait-times
     address: 800 Commissioners Rd E
     city: London
@@ -24,7 +24,7 @@ hospitals:
   - id: lhsc_uh_adult_er
     name: LHSC University Hospital Adult ER
     dept: ER
-    scraper: lhsc
+    scraper_class: scrapers.lhsc.LHSC
     url: https://www.lhsc.on.ca/adult-ed/emergency-department-wait-times
     address: 339 Southdale Rd E
     city: London
