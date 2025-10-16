@@ -1,30 +1,30 @@
 hospitals:
-  - name: LHSC Victoria Hospital Adult ER
-    location: London, ON
-    time_zone: America/Toronto
-    address: 800 Commissioners Rd W, London, ON N6A 5W9
-    id: lhsc_vh_adult_er
+  - id: lhsc_vh_adult_er
+    name: LHSC Victoria Hospital Adult ER
     dept: ER
     scraper: lhsc
     url: https://www.lhsc.on.ca/adult-ed/emergency-department-wait-times
-    version: 1
-
-  - name: LHSC University Hospital Adult ER
+    address: 800 Commissioners Rd W
     location: London, ON
     time_zone: America/Toronto
-    address: 339 Southdale Rd E, London, ON N6E 1A4
-    id: lhsc_uh_adult_er
-    dept: ER
-    scraper: lhsc
-    url: https://www.lhsc.on.ca/adult-ed/emergency-department-wait-times
     version: 1
 
-  - name: LHSC Children's Hospital ER
-    location: London, ON
-    address: 800 Commissioners Rd E
-    time_zone: America/Toronto
-    id: lhsc_ch_er
+  - id: lhsc_ch_er
+    name: LHSC Children's Hospital ER
     dept: ER
     scraper: lhsc
     url: https://www.lhsc.on.ca/emergency-department/childrens-hospital-emergency-department-wait-times
+    address: 800 Commissioners Rd E
+    location: London, ON
+    time_zone: America/Toronto
+    version: 1
+
+  - id: lhsc_uh_adult_er
+    name: LHSC University Hospital Adult ER
+    dept: ER
+    scraper: lhsc
+    url: https://www.lhsc.on.ca/adult-ed/emergency-department-wait-times
+    address: 339 Southdale Rd E
+    location: London, ON
+    time_zone: America/Toronto
     version: 1
