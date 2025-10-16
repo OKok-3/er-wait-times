@@ -10,7 +10,7 @@ class BaseScraper(ABC):
     dept: str
     version: int
 
-    def __init__(self, name: str, _id: str, location: str, address: str, id: str, url: str, dept: str, version: int):
+    def __init__(self, name: str, _id: str, location: str, address: str, url: str, dept: str, version: int):
         self.name = name
         self._id = _id
         self.location = location
