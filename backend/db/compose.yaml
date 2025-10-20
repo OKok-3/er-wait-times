@@ -1,0 +1,22 @@
+services:
+  db:
+    image: postgres:18-alpine
+    restart: unless-stopped
+    shm_size: 128mb
+    user: ${UID}:${GID}
+    environment:
+      POSTGRES_DB: ${PG_DB}
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+    volumes:
+      - ${PG_DATA_DIR}/data:/var/lib/postgresql/18/docker
+      - ${PG_DATA_DIR}/certs/ca.crt:/var/lib/postgresql/ssl/ca.crt:ro
+      - ${PG_DATA_DIR}/certs/server.crt:/var/lib/postgresql/ssl/server.crt:ro
+      - ${PG_DATA_DIR}/certs/server.key:/var/lib/postgresql/ssl/server.key:ro
+    ports:
+      - ${PG_PORT}:5432
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${PG_USER} -d ${PG_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
