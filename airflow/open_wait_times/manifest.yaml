@@ -10,10 +10,10 @@ hospitals:
     scraper_module: "scrapers.lhsc"
     scraper_class: "LHSC"
     version: 1
-  - id: "lhsc_uh_pediatric_er"
-    name: "LHSC University Hospital Pediatrics"
+  - id: "lhsc_ch_pediatric_er"
+    name: "LHSC Children's Hospital"
     dept: "ER"
-    address: "339 Windermere Road"
+    address: "800 Commissioners Rd E"
     county: "Middlesex"
     city: "London"
     province: "ON"
