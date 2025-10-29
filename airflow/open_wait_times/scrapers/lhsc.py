@@ -9,7 +9,7 @@ class LHSC(BaseScraper):
         response = get(self.url)
         response.raise_for_status()
 
-        s3 = S3Hook(aws_conn_id="garage_s3")
+        s3 = S3Hook(aws_conn_id="garage-s3")
         filename = f"{self.name}/{self.dept}/{self._id}_scraper_v{self.version}_{ts}.html"
         s3.load_string(
             string_data=response.text,
@@ -23,7 +23,7 @@ class LHSC(BaseScraper):
         }
 
     def parse(self, data: dict[str, str]) -> dict[str, any]:
-        s3 = S3Hook(aws_conn_id="garage_s3")
+        s3 = S3Hook(aws_conn_id="garage-s3")
         html = str(s3.read_key(key=data["filename"], bucket_name="open-wait-times"))
 
         hospital_identifier = self._id.split("_")[1].upper()
