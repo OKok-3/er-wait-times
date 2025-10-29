@@ -27,6 +27,7 @@ for hospital in registry.hospitals:
             tags=["Open Wait Times"],
             start_date=datetime(2025, 1, 1),
             catchup=False,
+            params={**hospital_config},
         )
         def extract_data() -> None:
             scraper = scraper_class(hospital_config)
