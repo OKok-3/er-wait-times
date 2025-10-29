@@ -19,7 +19,7 @@ for hospital in registry.hospitals:
         name = hospital_config["name"]
         dept = hospital_config["dept"]
         scraper_module = import_module(hospital_config["scraper_module"])
-        scraper = getattr(scraper_module, hospital_config["scraper_class"])
+        scraper_class = getattr(scraper_module, hospital_config["scraper_class"])
 
         @dag(
             dag_id=f"extract_data_{hospital_config['id']}",
@@ -29,6 +29,8 @@ for hospital in registry.hospitals:
             catchup=False,
         )
         def extract_data() -> None:
+            scraper = scraper_class(hospital_config)
+
             @task
             def scrape() -> None:
                 pass

@@ -12,28 +12,19 @@ class BaseScraper(ABC):
     url: str
     version: int
 
-    def __init__(
-        self,
-        _id: str,
-        name: str,
-        dept: str,
-        address: str,
-        county: str,
-        city: str,
-        province: str,
-        url: str,
-        version: int,
-    ):
-        self._id = _id
-        self.name = name
-        self.dept = dept
-        self.address = address
-        self.county = county
-        self.city = city
-        self.province = province
+    def __init__(self, metadata: dict[str, any]):
+        self._id = metadata["id"]
+        self.name = metadata["name"]
+        self.dept = metadata["dept"]
+        self.address = metadata["address"]
+        self.county = metadata["county"]
+        self.city = metadata["city"]
+        self.province = metadata["province"]
+        self.url = metadata["url"]
+        self.version = metadata["version"]
 
     @abstractmethod
-    def scrape(self) -> None:
+    def scrape(self, ts: str) -> None:
         raise NotImplementedError
 
     @abstractmethod
