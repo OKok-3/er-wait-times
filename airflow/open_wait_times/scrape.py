@@ -33,8 +33,8 @@ for hospital in registry.hospitals:
             scraper = scraper_class(hospital_config)
 
             @task
-            def scrape() -> None:
-                pass
+            def scrape(ts: str) -> None:
+                scraper.scrape(ts)
 
             @task
             def parse() -> None:
