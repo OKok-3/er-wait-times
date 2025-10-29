@@ -11,13 +11,14 @@ CREATE TABLE owt.hospital_metadata (
   id              text PRIMARY KEY,
   name            text NOT NULL,
   dept            varchar(20) NOT NULL,
-  scraper_module  text NOT NULL,
-  scraper_class   text NOT NULL,
-  url             text NOT NULL,
   address         text NOT NULL,
+  county          text NOT NULL,
   city            text NOT NULL,
   province        owt.province_code  NOT NULL,
-  timezone        text DEFAULT 'America/Toronto',
+  timezone        text NOT NULL,
+  url             text NOT NULL,
+  scraper_module  text NOT NULL,
+  scraper_class   text NOT NULL,
   version         smallint NOT NULL
 );
 
