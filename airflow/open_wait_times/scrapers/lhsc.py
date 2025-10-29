@@ -45,7 +45,7 @@ class LHSC(BaseScraper):
 
         return data
 
-    def save(self, data: dict[str, any]) -> None:
+    def load_data(self, data: dict[str, any]) -> None:
         pg = PostgresHook(postgres_conn_id="owt-pg")
 
         # We won't do None/Null checks and will rely on pipeline failing to catch this

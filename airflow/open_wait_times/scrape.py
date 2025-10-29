@@ -43,10 +43,10 @@ for hospital in registry.hospitals:
                 return data
 
             @task
-            def save(data: dict[str, any]) -> None:
-                scraper.save(data)
+            def load_data(data: dict[str, any]) -> None:
+                scraper.load_data(data)
 
-            save(parse(scrape()))
+            load_data(parse(scrape()))
 
         return extract_data()
 

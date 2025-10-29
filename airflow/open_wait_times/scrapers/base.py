@@ -38,5 +38,5 @@ class BaseScraper(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def save(self, data: dict[str, any]) -> None:
+    def load_data(self, data: dict[str, any]) -> None:
         raise NotImplementedError
