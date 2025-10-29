@@ -11,6 +11,7 @@ class BaseScraper(ABC):
     province: str
     url: str
     version: int
+    ts: str
 
     def __init__(self, metadata: dict[str, any]):
         self._id = metadata["id"]
@@ -22,6 +23,7 @@ class BaseScraper(ABC):
         self.province = metadata["province"]
         self.url = metadata["url"]
         self.version = metadata["version"]
+        self.ts = ""
 
     @abstractmethod
     def scrape(self, ts: str) -> None:

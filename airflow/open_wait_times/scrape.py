@@ -34,7 +34,8 @@ for hospital in registry.hospitals:
 
             @task
             def scrape(ts: str) -> None:
-                scraper.scrape(ts)
+                scraper.ts = ts
+                scraper.scrape()
 
             @task
             def parse() -> None:
