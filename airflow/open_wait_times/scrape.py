@@ -33,19 +33,20 @@ for hospital in registry.hospitals:
             scraper = scraper_class(hospital_config)
 
             @task
-            def scrape(ts: str) -> None:
-                scraper.ts = ts
-                scraper.scrape()
+            def scrape(ts: str) -> dict[str, str]:
+                data = scraper.scrape(ts)
+                return data
 
             @task
-            def parse() -> None:
-                pass
+            def parse(data: dict[str, str]) -> dict[str, any]:
+                data = scraper.parse(data)
+                return data
 
             @task
-            def save() -> None:
-                pass
+            def save(data: dict[str, any]) -> None:
+                scraper.save(data)
 
-            scrape() >> parse() >> save()
+            save(parse(scrape()))
 
         return extract_data()
 

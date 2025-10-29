@@ -11,7 +11,6 @@ class BaseScraper(ABC):
     province: str
     url: str
     version: int
-    ts: str
 
     def __init__(self, metadata: dict[str, any]):
         self._id = metadata["id"]
@@ -23,16 +22,15 @@ class BaseScraper(ABC):
         self.province = metadata["province"]
         self.url = metadata["url"]
         self.version = metadata["version"]
-        self.ts = ""
 
     @abstractmethod
-    def scrape(self, ts: str) -> None:
+    def scrape(self, ts: str) -> dict[str, str]:
         raise NotImplementedError
 
     @abstractmethod
-    def parse(self) -> None:
+    def parse(self, data: dict[str, str]) -> dict[str, any]:
         raise NotImplementedError
 
     @abstractmethod
-    def save(self) -> None:
+    def save(self, data: dict[str, any]) -> None:
         raise NotImplementedError
