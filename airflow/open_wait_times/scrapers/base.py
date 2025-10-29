@@ -9,7 +9,10 @@ class BaseScraper(ABC):
     county: str
     city: str
     province: str
+    timezone: str
     url: str
+    scraper_module: str
+    scraper_class: str
     version: int
 
     def __init__(self, metadata: dict[str, any]):
@@ -20,7 +23,10 @@ class BaseScraper(ABC):
         self.county = metadata["county"]
         self.city = metadata["city"]
         self.province = metadata["province"]
+        self.timezone = metadata["timezone"]
         self.url = metadata["url"]
+        self.scraper_module = metadata["scraper_module"]
+        self.scraper_class = metadata["scraper_class"]
         self.version = metadata["version"]
 
     @abstractmethod
