@@ -1,0 +1,34 @@
+hospitals:
+  - id: lhsc_uh_adult_er
+    name: LHSC University Hospitals
+    dept: ER
+    address: 339 Windermere Road
+    county: Middlesex
+    city: London
+    province: ON
+    url: https://www.lhsc.on.ca/adult-ed/emergency-department-wait-times
+    scraper_module: scrapers.lhsc
+    scraper_class: LHSC
+    version: 1
+  - id: lhsc_uh_pediatric_er
+    name: LHSC University Hospitals Pediatrics
+    dept: ER
+    address: 339 Windermere Road
+    county: Middlesex
+    city: London
+    province: ON
+    url: https://www.lhsc.on.ca/emergency-department/childrens-hospital-emergency-department-wait-times
+    scraper_module: scrapers.lhsc
+    scraper_class: LHSC
+    version: 1
+  - id: lhsc_vh_adult_er
+    name: LHSC Victoria Hospitals
+    dept: ER
+    address: 800 Commissioners Rd W
+    county: Middlesex
+    city: London
+    province: ON
+    url: https://www.lhsc.on.ca/adult-ed/emergency-department-wait-times
+    scraper_module: scrapers.lhsc
+    scraper_class: LHSC
+    version: 1
