@@ -1,6 +1,6 @@
 hospitals:
   - id: "lhsc_uh_adult_er"
-    name: "LHSC University Hospitals"
+    name: "LHSC University Hospital"
     dept: "ER"
     address: "339 Windermere Road"
     county: "Middlesex"
@@ -11,7 +11,7 @@ hospitals:
     scraper_class: "LHSC"
     version: 1
   - id: "lhsc_uh_pediatric_er"
-    name: "LHSC University Hospitals Pediatrics"
+    name: "LHSC University Hospital Pediatrics"
     dept: "ER"
     address: "339 Windermere Road"
     county: "Middlesex"
@@ -22,7 +22,7 @@ hospitals:
     scraper_class: "LHSC"
     version: 1
   - id: "lhsc_vh_adult_er"  
-    name: "LHSC Victoria Hospitals"
+    name: "LHSC Victoria Hospital"
     dept: "ER"
     address: "800 Commissioners Rd W"
     county: "Middlesex"
