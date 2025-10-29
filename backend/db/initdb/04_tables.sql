@@ -23,8 +23,9 @@ CREATE TABLE owt.hospital_metadata (
 
 -- Scraped waiting times
 CREATE TABLE owt.er_wait_times (
-  fetch_ts                timestamptz NOT NULL,
   hospital_id             text NOT NULL REFERENCES owt.hospital_metadata(id),
+  fetch_ts                timestamptz NOT NULL,  -- The timestamp of the fetch operation
+  update_ts               timestamptz NOT NULL,  -- The timestamp of the published last updated time of the fetched wait time
   wait_duration           interval NOT NULL,
   patient_arrival_time    timestamptz NOT NULL,
   patient_departure_time  timestamptz NOT NULL,
