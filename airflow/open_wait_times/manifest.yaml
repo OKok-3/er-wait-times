@@ -24,7 +24,7 @@ hospitals:
   - id: "lhsc_vh_adult_er"  
     name: "LHSC Victoria Hospital"
     dept: "ER"
-    address: "800 Commissioners Rd W"
+    address: "800 Commissioners Rd E"
     county: "Middlesex"
     city: "London"
     province: "ON"
