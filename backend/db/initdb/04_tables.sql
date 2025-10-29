@@ -31,5 +31,5 @@ CREATE TABLE owt.er_wait_times (
   patient_arrival_time    timestamptz NOT NULL,
   patient_departure_time  timestamptz NOT NULL,
   extra_info              jsonb,  -- To store additional data that is hospital specific
-  PRIMARY KEY (fetch_ts, hospital_id)
+  PRIMARY KEY (update_ts, hospital_id)
 );
