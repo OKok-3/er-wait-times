@@ -1,4 +1,4 @@
-from sys import path
+import os
 import yaml
 
 
@@ -9,6 +9,6 @@ class Registry:
         self.hospitals = {}
 
     def register(self) -> None:
-        with open(f"{path[0]}/manifest.yaml", "r") as manifest_file:
+        with open(f"{os.path.dirname(os.path.abspath(__file__))}/manifest.yaml", "r") as manifest_file:
             manifest = yaml.safe_load(manifest_file)
         self.hospitals = manifest["hospitals"]
