@@ -31,12 +31,33 @@ class BaseScraper(ABC):
 
     @abstractmethod
     def scrape(self, ts: str) -> dict[str, str]:
+        """Scrape the data from the URL, upload the raw data to S3 and insert the fetch log into the database.
+
+        Args:
+            ts (str): The timestamp of the scrape
+
+        Returns:
+            dict[str, str]: Data and metadata about the scrape
+        """
         raise NotImplementedError
 
     @abstractmethod
     def parse(self, data: dict[str, str]) -> dict[str, any]:
+        """Parse the data from the scrape task and return the parsed data.
+
+        Args:
+            data (dict[str, str]): The data from the scrape
+
+        Returns:
+            dict[str, any]: The parsed data
+        """
         raise NotImplementedError
 
     @abstractmethod
     def load_data(self, data: dict[str, any]) -> None:
+        """Load the data into the database.
+
+        Args:
+            data (dict[str, any]): The data from the parse task
+        """
         raise NotImplementedError
