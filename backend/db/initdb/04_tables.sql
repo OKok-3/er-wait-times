@@ -51,4 +51,5 @@ CREATE TABLE owt.er_wait_times (
   extra_info              jsonb,  -- To store additional data that is hospital specific
   PRIMARY KEY (hospital_id, fetch_log_id),
   CONSTRAINT er_wait_times_patient_departure_time_check CHECK (patient_departure_time > patient_arrival_time),
+  CONSTRAINT er_wait_times_wait_duration_check CHECK (wait_duration > INTERVAL '0 seconds')
 );
