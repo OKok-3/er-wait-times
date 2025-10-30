@@ -125,10 +125,13 @@ class LHSC(BaseScraper):
         patient_departure_time = update_ts
         extra_info = None
 
-        # TODO: Conflict will be dealt with by the to-be-implemented file hash checking step
-        pg.insert_rows(
-            table="owt.er_wait_times",
-            rows=[
+        pg.run(
+            """
+            INSERT INTO owt.er_wait_times (hospital_id, fetch_log_id, update_ts, wait_duration, patient_arrival_time, patient_departure_time, extra_info)
+            VALUES (%s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT DO NOTHING;
+            """,
+            parameters=[
                 (
                     hospital_id,
                     fetch_log_id,
@@ -138,14 +141,5 @@ class LHSC(BaseScraper):
                     patient_departure_time,
                     extra_info,
                 )
-            ],
-            target_fields=[
-                "hospital_id",
-                "fetch_log_id",
-                "update_ts",
-                "wait_duration",
-                "patient_arrival_time",
-                "patient_departure_time",
-                "extra_info",
             ],
         )
