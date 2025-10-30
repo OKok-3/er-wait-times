@@ -27,12 +27,11 @@ CREATE TABLE owt.fetch_logs (
   id                uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   hospital_id       text NOT NULL REFERENCES owt.hospital_metadata(id) ON DELETE RESTRICT,
   ts                timestamptz NOT NULL,
-  status_code       smallint NOT NULL,
+  status_code       smallint NOT NULL CHECK (status_code >= 100 AND status_code < 600),
   error             text,
   file_hash         text,
   file_name         text,
   UNIQUE (hospital_id, file_hash),
-  CONSTRAINT fetch_log_status_code_check CHECK (status_code >= 100 AND status_code < 600),
   -- Only allow file hash and name to be null iff there is an error
   CONSTRAINT fetch_log_error_check CHECK (
     (error IS NULL      AND file_hash IS NOT NULL AND file_name IS NOT NULL) OR
