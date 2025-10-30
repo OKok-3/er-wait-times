@@ -1,6 +1,7 @@
 import os
 import sys
 from importlib import import_module
+from datetime import timedelta
 from pendulum import datetime
 from airflow.sdk import dag, task
 
@@ -26,6 +27,7 @@ for hospital in registry.hospitals:
             dag_display_name=f"{name} {dept} Wait Times",
             tags=["Open Wait Times"],
             start_date=datetime(2025, 1, 1),
+            schedule=timedelta(minutes=10),
             catchup=False,
             params={**hospital_config},
         )
