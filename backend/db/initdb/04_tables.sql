@@ -15,11 +15,11 @@ CREATE TABLE owt.hospital_metadata (
   county          text NOT NULL,
   city            text NOT NULL,
   province        owt.province_code  NOT NULL,
-  timezone        text NOT NULL,
-  url             text NOT NULL,
+  timezone        text NOT NULL CHECK (timezone ~ '^[A-Za-z]+/[A-Za-z_+-]+$'),
+  url             text NOT NULL CHECK (url ~ '^https?://$'),
   scraper_module  text NOT NULL,
   scraper_class   text NOT NULL,
-  version         smallint NOT NULL
+  version         smallint NOT NULL CHECK (version > 0)
 );
 
 -- Fetch logs
