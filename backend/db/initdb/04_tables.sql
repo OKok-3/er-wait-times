@@ -22,14 +22,26 @@ CREATE TABLE owt.hospital_metadata (
   version         smallint NOT NULL
 );
 
+-- Fetch logs
+CREATE TABLE owt.fetch_logs (
+  id                uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  hospital_id       text NOT NULL REFERENCES owt.hospital_metadata(id) ON DELETE RESTRICT,
+  ts                timestamptz NOT NULL,
+  status_code       smallint NOT NULL,
+  error             text,
+  file_hash         text NOT NULL,
+  file_name         text NOT NULL,
+  UNIQUE (hospital_id, file_hash)
+);
+
 -- Scraped waiting times
 CREATE TABLE owt.er_wait_times (
-  hospital_id             text NOT NULL REFERENCES owt.hospital_metadata(id),
-  fetch_ts                timestamptz NOT NULL,  -- The timestamp of the fetch operation
+  fetch_log_id            uuid NOT NULL REFERENCES owt.fetch_logs(id),
+  hospital_id             text NOT NULL REFERENCES owt.hospital_metadata(id) ON DELETE RESTRICT,
   update_ts               timestamptz NOT NULL,  -- The timestamp of the published last updated time of the fetched wait time
   wait_duration           interval NOT NULL,
   patient_arrival_time    timestamptz NOT NULL,
   patient_departure_time  timestamptz NOT NULL,
   extra_info              jsonb,  -- To store additional data that is hospital specific
-  PRIMARY KEY (update_ts, hospital_id)
+  PRIMARY KEY (hospital_id, fetch_log_id)
 );
