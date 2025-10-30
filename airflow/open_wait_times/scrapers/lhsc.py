@@ -37,10 +37,14 @@ class LHSC(BaseScraper):
             file_name = f"{self.name}/{self.dept}/{self._id}_scraper_v{self.version}_{ts}.html"
 
         # Check if the website has changed since the last fetch
-        last_fetch_file_hash, last_fetch_file_name = pg.get_first(
-            sql="SELECT id, file_hash, file_name FROM owt.fetch_logs WHERE hospital_id = %s ORDER BY ts DESC LIMIT 1",
+        last_fetch = pg.get_first(
+            sql="SELECT file_hash, file_name FROM owt.fetch_logs WHERE hospital_id = %s ORDER BY ts DESC LIMIT 1",
             parameters=[self._id],
-        )[0]
+        )
+        if last_fetch:
+            last_fetch_file_hash, last_fetch_file_name = last_fetch
+        else:
+            last_fetch_file_hash, last_fetch_file_name = None, None
 
         if file_hash and last_fetch_file_hash == file_hash:
             skip_downstream = True
