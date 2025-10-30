@@ -10,6 +10,7 @@ from airflow.providers.postgres.hooks.postgres import PostgresHook
 
 class LHSC(BaseScraper):
     def scrape(self, ts: str) -> dict[str, str]:
+        # Initialize hooks
         pg = PostgresHook(postgres_conn_id="owt-pg")
         s3 = S3Hook(aws_conn_id="garage-s3")
 
@@ -34,18 +35,24 @@ class LHSC(BaseScraper):
         if not error:
             file_hash = hashlib.sha256(response.text.encode(encoding="utf-8")).hexdigest()
             file_name = f"{self.name}/{self.dept}/{self._id}_scraper_v{self.version}_{ts}.html"
+
+        # Check if the website has changed since the last fetch
+        last_fetch_file_hash, last_fetch_file_name = pg.get_first(
+            sql="SELECT id, file_hash, file_name FROM owt.fetch_logs WHERE hospital_id = %s ORDER BY ts DESC LIMIT 1",
+            parameters=[self._id],
+        )[0]
+
+        if file_hash and last_fetch_file_hash == file_hash:
+            skip_downstream = True
+            file_name = last_fetch_file_name
+
+        # Only upload the file to S3 if it has changed since the last fetch
+        if file_hash and last_fetch_file_hash != file_hash:
             s3.load_string(
                 string_data=response.text,
                 key=file_name,
                 bucket_name="open-wait-times",
             )
-
-            # Check if the website has changed since the last fetch
-            last_fetch = pg.get_first(
-                sql="SELECT file_hash FROM owt.fetch_logs WHERE hospital_id = %s ORDER BY ts DESC LIMIT 1",
-                parameters=[self._id],
-            )
-            skip_downstream = (file_hash == last_fetch[0]) if last_fetch else skip_downstream
 
         # Insert the fetch log into the database
         pg.insert_rows(
