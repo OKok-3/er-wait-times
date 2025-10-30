@@ -131,15 +131,13 @@ class LHSC(BaseScraper):
             VALUES (%s, %s, %s, %s, %s, %s, %s)
             ON CONFLICT DO NOTHING;
             """,
-            parameters=[
-                (
-                    hospital_id,
-                    fetch_log_id,
-                    update_ts,
-                    wait_duration,
-                    patient_arrival_time,
-                    patient_departure_time,
-                    extra_info,
-                )
-            ],
+            parameters=(
+                hospital_id,
+                fetch_log_id,
+                update_ts,
+                wait_duration,
+                patient_arrival_time,
+                patient_departure_time,
+                extra_info,
+            ),
         )
