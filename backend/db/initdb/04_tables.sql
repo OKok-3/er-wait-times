@@ -32,6 +32,7 @@ CREATE TABLE owt.fetch_logs (
   file_hash         text,
   file_name         text,
   UNIQUE (hospital_id, file_hash),
+  CONSTRAINT fetch_log_status_code_check CHECK (status_code >= 100 AND status_code < 600),
   -- Only allow file hash and name to be null iff there is an error
   CONSTRAINT fetch_log_error_check CHECK (
     (error IS NULL      AND file_hash IS NOT NULL AND file_name IS NOT NULL) OR
