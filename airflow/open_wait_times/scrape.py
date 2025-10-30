@@ -37,6 +37,10 @@ for hospital in registry.hospitals:
                 data = scraper.scrape(ts)
                 return data
 
+            @task.short_circuit
+            def skip_downstream(skip_downstream_flag: bool) -> bool:
+                return not skip_downstream_flag
+
             @task
             def parse(data: dict[str, str]) -> dict[str, any]:
                 data = scraper.parse(data)
@@ -46,7 +50,9 @@ for hospital in registry.hospitals:
             def load_data(data: dict[str, any]) -> None:
                 scraper.load_data(data)
 
-            load_data(parse(scrape()))
+            raw_data = scrape()
+            parsed_data = parse(raw_data)
+            skip_downstream(raw_data["skip_downstream"]) >> parsed_data >> load_data(parsed_data)
 
         return extract_data()
 
