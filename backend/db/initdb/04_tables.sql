@@ -29,9 +29,14 @@ CREATE TABLE owt.fetch_logs (
   ts                timestamptz NOT NULL,
   status_code       smallint NOT NULL,
   error             text,
-  file_hash         text NOT NULL,
-  file_name         text NOT NULL,
-  UNIQUE (hospital_id, file_hash)
+  file_hash         text,
+  file_name         text,
+  UNIQUE (hospital_id, file_hash),
+  -- Only allow file hash and name to be null iff there is an error
+  CONSTRAINT fetch_log_error_check CHECK (
+    (error IS NULL      AND file_hash IS NOT NULL AND file_name IS NOT NULL) OR
+    (error IS NOT NULL  AND file_hash IS NULL     AND file_name IS NULL)
+  )
 );
 
 -- Scraped waiting times
