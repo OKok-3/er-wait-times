@@ -86,6 +86,11 @@ class LHSC(BaseScraper):
             sql="SELECT id FROM owt.fetch_logs WHERE hospital_id = %s AND ts = %s",
             parameters=[self._id, ts],
         )
+
+        # Let the DAG fail if there is an error
+        if error:
+            raise Exception(error)
+
         return {
             "file_name": file_name,
             "fetch_log_id": fetch_log_id,
