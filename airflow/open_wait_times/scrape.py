@@ -30,6 +30,10 @@ for hospital in registry.hospitals:
             schedule=timedelta(minutes=10),
             catchup=False,
             params={**hospital_config},
+            default_args={
+                "retries": 3,
+                "retry_delay": timedelta(seconds=10),
+            },
         )
         def extract_data() -> None:
             scraper = scraper_class(hospital_config)
